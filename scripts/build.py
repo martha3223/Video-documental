@@ -66,7 +66,7 @@ SCENES = [
 
 # Imágenes de apoyo (B-roll) sobre la voz: (inicio en el original, imagen, duración)
 BROLL = [
-    (12.0, 23, 5.5), (21.5, 1, 5.5), (48.0, 2, 5.5),
+    (12.0, 24, 5.5), (21.5, 1, 5.5), (48.0, 2, 5.5),
     (80.0, 14, 5.5), (113.0, 17, 5.5),
     (131.0, 21, 5.5), (156.0, 10, 5.0),
     (178.0, 18, 5.5), (210.0, 4, 5.5),
@@ -124,7 +124,15 @@ def plate(n, out, blur=0, dark=0.0):
     Las fotos verticales se colocan completas al centro sobre una versión desenfocada de sí mismas.
     """
     src = Image.open(img(n))
-    if src.width / src.height < 1.2:
+    if src.width / src.height > 2.2:
+        # Imagen panorámica: completa a lo ancho sobre una versión desenfocada de sí misma.
+        im = cover(img(n), W * 2, H * 2).filter(ImageFilter.GaussianBlur(40))
+        im = Image.blend(im, Image.new("RGB", im.size, (8, 8, 10)), 0.45)
+        fg = src.convert("RGB")
+        r = (W * 2 * 0.96) / fg.width
+        fg = fg.resize((round(fg.width * r), round(fg.height * r)), Image.LANCZOS)
+        im.paste(fg, ((im.width - fg.width) // 2, (im.height - fg.height) // 2))
+    elif src.width / src.height < 1.2:
         im = cover(img(n), W * 2, H * 2).filter(ImageFilter.GaussianBlur(40))
         im = Image.blend(im, Image.new("RGB", im.size, (8, 8, 10)), 0.45)
         fg = src.convert("RGB")
