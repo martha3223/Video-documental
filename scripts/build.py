@@ -354,7 +354,7 @@ def ending():
     quote_png(["“La educación comienza cuando aprendemos", "a mirar, escuchar y reconocer a los demás.”"],
               png, size=56, attribution="OSMAR · JENNY · MIRIAM · MARTA")
     c1 = w("seg", "end_quote.mp4")
-    card_segment(plate(6, w("gfx", "end_p.jpg"), blur=4, dark=0.55), png, 8.0, c1, zoom_in=False)
+    card_segment(plate(1, w("gfx", "end_p.jpg"), blur=4, dark=0.55), png, 8.0, c1, zoom_in=False)
     cp = w("gfx", "credits.png")
     hgt = credits_png(cp)
     dur = 26.0
