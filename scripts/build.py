@@ -53,30 +53,30 @@ def img(n):
 SCENES = [
     (1, "Introducción", "¿Qué sucede dentro de nuestras escuelas?", 1, 7.8, 69.3),
     (2, "Pedagogía decolonial", "Reconocer que todos tenemos algo que enseñar", 2, 69.3, 126.9),
-    (3, "Globalización y mundialización", "Lo que sucede en el mundo también llega al aula", 3, 126.9, 170.1),
+    (3, "Globalización y mundialización", "Lo que sucede en el mundo también llega al aula", 21, 126.9, 170.1),
     (4, "Sujetos y conocimientos situados", "Aprender desde lo que vivimos", 4, 170.1, 227.9),
-    (5, "Ciudadanía y educación", "Aprender a participar y convivir", 12, 227.9, 277.2),
+    (5, "Ciudadanía y educación", "Aprender a participar y convivir", 22, 227.9, 277.2),
     (6, "Educadores sentipensantes transhumantes", "Enseñar también es comprender", 14, 277.2, 334.85),
-    (7, "Normas y libertad", "Entre el orden y la autonomía", 7, 334.85, 373.0),
+    (7, "Normas y libertad", "Entre el orden y la autonomía", 13, 334.85, 373.0),
     (8, "Sexualidades y militancias", "El respeto a la diversidad", 8, 373.0, 412.3),
     (9, "Perspectiva de género", "Las mismas oportunidades para todos", 9, 412.3, 447.7),
     (10, "Narrativas emancipadoras", "Dar voz a los estudiantes y a su comunidad", 10, 447.7, 491.0),
-    (11, "Conclusión", "¿Qué nos deja esta experiencia como futuros docentes?", 11, 491.0, 561.9),
+    (11, "Conclusión", "¿Qué nos deja esta experiencia como futuros docentes?", 20, 491.0, 561.9),
 ]
 
 # Imágenes de apoyo (B-roll) sobre la voz: (inicio en el original, imagen, duración)
 BROLL = [
-    (12.0, 13, 5.5), (21.5, 1, 5.5), (48.0, 2, 5.5),
+    (12.0, 23, 5.5), (21.5, 1, 5.5), (48.0, 2, 5.5),
     (80.0, 14, 5.5), (113.0, 17, 5.5),
-    (131.0, 3, 5.5), (156.0, 10, 5.0),
+    (131.0, 21, 5.5), (156.0, 10, 5.0),
     (178.0, 18, 5.5), (210.0, 4, 5.5),
-    (238.0, 15, 5.5), (262.0, 12, 5.5),
+    (238.0, 15, 5.5), (262.0, 9, 5.5),
     (290.0, 16, 5.0),
-    (338.0, 7, 5.0), (360.0, 5, 5.5),
+    (338.0, 13, 5.0), (360.0, 5, 5.5),
     (380.0, 8, 5.5),
-    (436.0, 9, 5.5),
-    (455.0, 19, 5.5), (481.0, 6, 5.0),
-    (501.0, 15, 5.0), (520.0, 20, 6.0),
+    (436.0, 22, 5.5),
+    (455.0, 19, 5.5), (481.0, 23, 5.0),
+    (520.0, 20, 6.0),
 ]
 
 # Rótulos con nombre: primera aparición de cada participante.
