@@ -67,19 +67,20 @@ SCENES = [
 # Imágenes de apoyo (B-roll) sobre la voz: (inicio en el original, imagen, duración)
 BROLL = [
     (12.0, 13, 5.5), (21.5, 1, 5.5), (48.0, 2, 5.5),
-    (80.0, 14, 5.5), (113.0, 10, 5.5),
-    (131.0, 3, 5.5), (156.0, 9, 5.0),
-    (178.0, 4, 5.5), (210.0, 11, 5.5),
-    (238.0, 12, 5.5), (262.0, 6, 5.5),
-    (290.0, 13, 5.0),
+    (80.0, 14, 5.5), (113.0, 17, 5.5),
+    (131.0, 3, 5.5), (156.0, 10, 5.0),
+    (178.0, 18, 5.5), (210.0, 4, 5.5),
+    (238.0, 15, 5.5), (262.0, 12, 5.5),
+    (290.0, 16, 5.0),
     (338.0, 7, 5.0), (360.0, 5, 5.5),
     (380.0, 8, 5.5),
     (436.0, 9, 5.5),
-    (455.0, 10, 5.5), (481.0, 2, 5.0),
+    (455.0, 19, 5.5), (481.0, 6, 5.0),
+    (501.0, 15, 5.0), (520.0, 20, 6.0),
 ]
 
 # Rótulos con nombre: primera aparición de cada participante.
-LOWER = [(7.8, "Osmar"), (40.1, "Jenny"), (146.9, "Miriam"), (200.0, "Marta")]
+LOWER = [(7.8, "Osmar"), (40.1, "Jenny"), (146.9, "Miriam"), (200.0, "Martha")]
 
 ROMAN = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"]
 
@@ -118,8 +119,25 @@ def cover(path, w_, h_):
 
 
 def plate(n, out, blur=0, dark=0.0):
-    """Imagen 16:9 a 2x de resolución para el efecto Ken Burns."""
-    im = cover(img(n), W * 2, H * 2)
+    """Imagen 16:9 a 2x de resolución para el efecto Ken Burns.
+
+    Las fotos verticales se colocan completas al centro sobre una versión desenfocada de sí mismas.
+    """
+    src = Image.open(img(n))
+    if src.width / src.height < 1.2:
+        im = cover(img(n), W * 2, H * 2).filter(ImageFilter.GaussianBlur(40))
+        im = Image.blend(im, Image.new("RGB", im.size, (8, 8, 10)), 0.45)
+        fg = src.convert("RGB")
+        r = (H * 2 * 0.94) / fg.height
+        fg = fg.resize((round(fg.width * r), round(fg.height * r)), Image.LANCZOS)
+        x, y = (im.width - fg.width) // 2, (im.height - fg.height) // 2
+        sh = Image.new("L", im.size, 0)
+        ImageDraw.Draw(sh).rectangle([x + 12, y + 18, x + fg.width + 12, y + fg.height + 18], fill=150)
+        sh = sh.filter(ImageFilter.GaussianBlur(30))
+        im = Image.composite(Image.new("RGB", im.size, (0, 0, 0)), im, sh)
+        im.paste(fg, (x, y))
+    else:
+        im = cover(img(n), W * 2, H * 2)
     if blur:
         im = im.filter(ImageFilter.GaussianBlur(blur))
     if dark:
@@ -220,11 +238,14 @@ def credits_png(out):
     add("hi", "desde una mirada decolonial")
     add("gap", "")
     add("cap", "PARTICIPANTES")
-    for n in ["Osmar", "Jenny", "Miriam", "Marta"]:
+    for n in ["Osmar", "Jenny", "Miriam", "Martha"]:
         add("n", n)
     add("gap", "")
     add("cap", "BASADO EN EL REGISTRO DE OBSERVACIÓN")
     add("t", "Jornadas de práctica en la Telesecundaria 2, La Carmona")
+    add("gap", "")
+    add("cap", "FOTOGRAFÍAS DE LA TELESECUNDARIA")
+    add("t", "Archivo del equipo")
     add("gap", "")
     add("cap", "MÚSICA")
     add("t", "“The Long Dark” — Scott Buckley (CC BY 3.0)")
@@ -352,7 +373,7 @@ def opening(out):
 def ending():
     png = w("gfx", "end_quote.png")
     quote_png(["“La educación comienza cuando aprendemos", "a mirar, escuchar y reconocer a los demás.”"],
-              png, size=56, attribution="OSMAR · JENNY · MIRIAM · MARTA")
+              png, size=56, attribution="OSMAR · JENNY · MIRIAM · MARTHA")
     c1 = w("seg", "end_quote.mp4")
     card_segment(plate(1, w("gfx", "end_p.jpg"), blur=4, dark=0.55), png, 8.0, c1, zoom_in=False)
     cp = w("gfx", "credits.png")

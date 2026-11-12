@@ -1,12 +1,12 @@
 # Video documental
 
-**Reconociendo prácticas escolares desde una mirada decolonial**: edición en estilo documental del video grabado por Osmar, Jenny, Miriam y Marta a partir de su guion.
+**Reconociendo prácticas escolares desde una mirada decolonial**: edición en estilo documental del video grabado por Osmar, Jenny, Miriam y Martha a partir de su guion.
 
 ## Qué incluye la edición
 
 - **Apertura**: dos frases sobre imágenes con movimiento lento y el título principal.
 - **11 capítulos** con tarjeta de presentación (número, título y subtítulo tomados de cada escena del guion).
-- **Imágenes de apoyo (B-roll)** sobre la voz: telesecundarias de Guanajuato, telar de cintura, milpa, aulas, marcha del orgullo, desfile escolar, etc.
+- **Fotos propias de la telesecundaria** (aula, patio, cuadernos, papel picado, desfile y altar de Día de Muertos) y **imágenes de apoyo** de archivo sobre la voz: telesecundarias de Guanajuato, telar de cintura, milpa, aulas, marcha del orgullo, desfile escolar, etc.
 - **Rótulos con nombre** la primera vez que aparece cada participante.
 - **Transiciones** con fundido a negro entre capítulos y fundidos en las imágenes.
 - **Música ambiental** que baja automáticamente cuando alguien habla.
